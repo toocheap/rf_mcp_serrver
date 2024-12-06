@@ -1,5 +1,5 @@
 import httpx
-from typing import List, Dict
+from typing import List, Dict, Optional
 from config import get_settings, get_logger
 from app.core.exceptions import ClaudeAPIException
 from app.models.messages import Message, MCPResponse, Usage
