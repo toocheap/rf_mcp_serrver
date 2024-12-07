@@ -1,12 +1,16 @@
 from cachetools import TTLCache
 from typing import Optional, Dict, Any
-from config import get_logger
+from config import get_logger, get_settings
 
 logger = get_logger()
+settings = get_settings()
 
 class RFCache:
     def __init__(self):
-        self.ip_cache = TTLCache(maxsize=1000, ttl=300)  # 5分
+        self.ip_cache = TTLCache(
+            maxsize=settings.CACHE_MAX_SIZE,
+            ttl=settings.CACHE_TTL
+        )
         self.domain_cache = TTLCache(maxsize=1000, ttl=300)
         self.vulnerability_cache = TTLCache(maxsize=1000, ttl=1800)  # 30分
         self.hash_cache = TTLCache(maxsize=1000, ttl=300)
